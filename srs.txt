@@ -1,0 +1,118 @@
+Project ID: 4
+Project Code: MinhTTH5
+Project Name: Hệ thống Quản lý Trung tâm Thể thao
+English Name: Sports Center Management System
+
+1. TỔNG QUAN DỰ ÁN
+
+Hệ thống quản lý trung tâm thể thao hỗ trợ quản lý hoạt động vận hành, đào tạo, thành viên, lịch học, thanh toán, báo cáo và hỗ trợ AI cho trung tâm. Hệ thống hướng tới việc tối ưu hóa quy trình quản lý, nâng cao trải nghiệm cho thành viên, huấn luyện viên, nhân viên lễ tân và quản lý trung tâm.
+
+2. CÁC VAI TRÒ NGƯỜI DÙNG
+
+Center Manager – Quản lý Trung tâm
+- Quản lý danh sách thành viên, huấn luyện viên và nhân viên của trung tâm.
+- Quản lý các lớp học, bộ môn, phòng tập và lịch hoạt động.
+- Phân công huấn luyện viên phụ trách từng lớp học.
+- Xem báo cáo số lượng thành viên, tình trạng đăng ký lớp và doanh thu theo thời gian.
+- Quản lý các gói thành viên, học phí và thời hạn sử dụng.
+- Phân quyền truy cập hệ thống cho từng vai trò.
+- Xem lịch sử thao tác quan trọng trên hệ thống.
+
+Coach – Huấn luyện viên
+- Xem lịch dạy và danh sách học viên trong các lớp phụ trách.
+- Xem thông tin cơ bản và mục tiêu tập luyện của từng học viên.
+- Tạo kế hoạch tập luyện cho cá nhân hoặc cho cả lớp.
+- Ghi nhận kết quả tập luyện của học viên sau mỗi buổi.
+- Đánh giá tiến độ của học viên và ghi nhận nhận xét.
+- Điểm danh học viên trong từng buổi tập.
+- Gửi thông báo hoặc bài tập về nhà cho học viên.
+- Sử dụng AI để gợi ý bài tập phù hợp dựa trên mục tiêu, trình độ và lịch sử tập luyện của học viên.
+
+Member – Học viên / Thành viên
+- Đăng ký tài khoản và cập nhật thông tin cá nhân.
+- Xem các gói thành viên và đăng ký/gia hạn gói tập.
+- Xem danh sách các lớp học và lịch học.
+- Đăng ký hoặc hủy đăng ký lớp học.
+- Xem lịch tập cá nhân và thông tin huấn luyện viên.
+- Xem lịch sử điểm danh và kết quả tập luyện.
+- Xem kế hoạch tập luyện và nhận xét từ huấn luyện viên.
+- Gửi câu hỏi cho hệ thống AI về lịch tập, bài tập hoặc các dịch vụ của trung tâm.
+- Nhận thông báo về lịch học, thay đổi lịch hoặc thời hạn gói thành viên.
+
+Receptionist – Nhân viên Lễ tân
+- Tìm kiếm và xem thông tin thành viên.
+- Đăng ký thành viên mới tại quầy.
+- Quản lý đăng ký/gia hạn các gói thành viên.
+- Kiểm tra trạng thái gói tập và thời hạn sử dụng của thành viên.
+- Điểm danh thành viên khi đến trung tâm.
+- Đăng ký lớp học hoặc hỗ trợ hủy lớp cho thành viên.
+- Ghi nhận các khoản thanh toán và in/xuất hóa đơn.
+- Tiếp nhận và ghi nhận các yêu cầu hỗ trợ từ thành viên.
+
+3. FLOW CHÍNH CỦA HỆ THỐNG
+
+Flow 1: User and membership management (required)
+- Quản lý tài khoản người dùng theo từng vai trò.
+- Đăng ký, cập nhật, khóa/mở tài khoản thành viên.
+- Quản lý thông tin cá nhân, liên hệ và lịch sử tham gia.
+- Quản lý các gói thành viên, giá, thời hạn, điều kiện và trạng thái sử dụng.
+- Hỗ trợ gia hạn và thanh toán gói tập.
+
+Flow 2: Class booking and schedule management (required)
+- Quản lý lớp học, bộ môn, thời lượng, phòng tập, lịch học và huấn luyện viên phụ trách.
+- Thành viên đăng ký, hủy đăng ký lớp học.
+- Kiểm tra số lượng còn trống, lịch học và xung đột thời gian.
+- Lễ tân hỗ trợ xử lý đăng ký và điểm danh.
+- Hệ thống cảnh báo khi lớp học sắp đầy hoặc lịch bị thay đổi.
+
+Flow 3: Payment and report management (required)
+- Ghi nhận khoản thanh toán, hóa đơn, các khoản phát sinh và quá trình gia hạn gói.
+- Quản lý doanh thu theo thời gian, theo gói, theo loại dịch vụ.
+- Cung cấp báo cáo số lượng thành viên, số lượng lớp đang hoạt động, doanh thu và tiến độ sử dụng dịch vụ.
+- Quản lý báo cáo theo ngày, tuần, tháng, quý và năm.
+
+Flow 4: Training and attendance management (optional)
+- Huấn luyện viên tạo kế hoạch tập luyện cá nhân hoặc nhóm.
+- Điểm danh học viên trong từng buổi tập.
+- Ghi nhận kết quả, tiến độ và nhận xét cho từng học viên.
+- Theo dõi trạng thái tập luyện, mức độ hoàn thành mục tiêu và hiệu quả học tập.
+
+Flow 5: AI workout recommendation (optional)
+- Hệ thống AI đề xuất bài tập phù hợp theo mục tiêu, độ tuổi, trình độ và lịch sử tập luyện.
+- Gợi ý lịch tập cá nhân hóa.
+- Tối ưu hóa mức độ luyện tập để tránh quá tải hoặc thiếu hiệu quả.
+
+Flow 6: AI assistant (optional)
+- Học viên gửi câu hỏi về lịch tập, bài tập, gói thành viên, dịch vụ và hoạt động trung tâm.
+- Hệ thống AI trả lời tự động, hỗ trợ tư vấn nhanh.
+- Cung cấp thông báo và nhắc nhở liên quan đến lịch học, thời hạn gói và thay đổi lịch.
+
+4. YÊU CẦU CHÍNH CỦA HỆ THỐNG
+
+- Hệ thống phải hỗ trợ quản lý người dùng theo nhiều vai trò khác nhau với quyền truy cập phù hợp.
+- Thành viên phải có thể đăng ký, xem gói tập, đăng ký lớp và theo dõi tiến độ tập luyện.
+- Huấn luyện viên phải có thể lên kế hoạch, điểm danh, đánh giá và theo dõi tiến độ học viên.
+- Nhân viên lễ tân phải hỗ trợ đăng ký thành viên, quản lý gói và thanh toán tại quầy.
+- Quản lý trung tâm phải theo dõi hoạt động, báo cáo doanh thu và tình trạng vận hành tổng quát.
+- Hệ thống cần có khả năng lưu trữ và truy xuất dữ liệu lịch tập, điểm danh, hóa đơn và góc nhìn báo cáo theo thời gian.
+- Hệ thống AI chỉ nên được dùng như một công cụ hỗ trợ quyết định và tư vấn, không thay thế vai trò quản lý và huấn luyện viên.
+
+5. MỤC TIÊU CHÍNH
+
+- Tăng hiệu quả quản lý trung tâm và giảm thao tác thủ công.
+- Cải thiện trải nghiệm của thành viên trong quá trình đăng ký, học tập và thanh toán.
+- Tăng độ chính xác trong việc điểm danh, theo dõi tiến độ và báo cáo doanh thu.
+- Hỗ trợ quản lý trung tâm ra quyết định nhanh hơn dựa trên dữ liệu thực tế.
+- Nâng cao khả năng cá nhân hóa trải nghiệm tập luyện bằng AI.
+
+6. RÀNG BUỘC VÀ GIẢ ĐỊNH
+
+- Hệ thống cần có cơ sở dữ liệu để lưu trữ thông tin thành viên, lớp học, huấn luyện viên, gói tập và hóa đơn.
+- Mỗi người dùng phải có thông tin xác thực và phân quyền rõ ràng.
+- Thời gian đăng ký lớp và thanh toán phải được kiểm soát để tránh xung đột dữ liệu.
+- Nhân viên lễ tân chỉ được cấp quyền theo phạm vi công việc phù hợp.
+- Các tiện ích AI cần dựa trên dữ liệu tập luyện, mục tiêu cá nhân và lịch sử huấn luyện để đưa ra gợi ý phù hợp.
+
+7. KẾT LUẬN
+
+Hệ thống quản lý trung tâm thể thao là nền tảng hỗ trợ toàn bộ vòng đời vận hành của trung tâm từ thành viên, lớp học, lịch tập, thanh toán, báo cáo đến hỗ trợ AI. Với các tác nhân chính là Center Manager, Coach, Member và Receptionist, hệ thống có thể tối ưu hóa quy trình vận hành và nâng cao hiệu quả hoạt động của trung tâm thể thao.

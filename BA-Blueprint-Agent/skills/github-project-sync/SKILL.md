@@ -8,7 +8,8 @@
 
 - Blueprint đã qua quality review tối thiểu.
 - Mỗi chức năng có ID, priority, owner, acceptance criteria và dependency.
-- Có `GITHUB_PROJECT_URL`, `GITHUB_OWNER`, `GITHUB_REPOSITORY` và `GITHUB_PROJECT_NUMBER`.
+- Có `GITHUB_PROJECT_URL`, `GITHUB_OWNER`, `GITHUB_BE_REPOSITORY`, `GITHUB_FE_REPOSITORY` và `GITHUB_PROJECT_NUMBER`.
+- Chọn repository theo loại công việc: BE dùng `GITHUB_BE_REPOSITORY`, FE dùng `GITHUB_FE_REPOSITORY`; nếu issue full-stack thì ghi rõ repository chính và repository liên quan.
 - Không ghi token hoặc dữ liệu bí mật vào Issue, comment, branch hoặc Markdown.
 
 ## Field chuẩn
@@ -27,6 +28,7 @@
 
 - Issue title: `[FR-###] Tên chức năng ngắn gọn`.
 - Issue body phải có context, scope, acceptance criteria, dependency, risk và link blueprint.
+- Chỉ dùng link blueprint dạng absolute URL tới file đã publish trên GitHub. Không dùng `blueprint.md` hoặc đường dẫn tương đối nếu file chưa tồn tại trong repository đích; khi chưa publish, link tới GitHub Project và ghi rõ Blueprint ID/source status.
 - Branch: `<type>/<issue-number>-<short-slug>`.
 - Pull Request phải dùng `Closes #<number>` hoặc `Refs #<number>`.
 - Mọi trạng thái phải có comment gồm `Progress`, `Summary`, `Evidence`, `Branch/PR`, `Next`, `Blocker`.
@@ -47,6 +49,7 @@ Blocker: <None hoặc blocker + owner + expected resolution>
 
 1. Khi `GITHUB_PROJECT_DRY_RUN=true`, chỉ báo cáo item/field sẽ tạo hoặc cập nhật.
 2. Tạo hoặc cập nhật Project item/Issue theo Blueprint ID, tránh trùng.
+	- Đọc issue number và URL từ `content.url` của Project item; không suy ra issue number từ FR ID hoặc thứ tự danh sách.
 3. Gán field, owner, label, iteration, dependency và target date.
 4. Khi bắt đầu branch, chuyển `In Progress`; khi có PR, chuyển `In Review`.
 5. Khi blocked, chuyển `Blocked`, ghi blocker owner và next action.

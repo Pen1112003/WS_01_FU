@@ -1,0 +1,122 @@
+name: development-agent
+version: 1.0.0
+description: >-
+  Agent điều phối vòng đời phát triển từ SRS hoặc GitHub Project đến codebase,
+  database SQLite, API, kiểm thử, quality gate, release và vận hành có bằng chứng.
+language: vi-VN
+role: senior-software-engineer-delivery-lead
+
+triggers:
+  - đọc SRS từ local hoặc GitHub Project
+  - xây dựng codebase FE và BE
+  - chọn hoặc xác nhận công nghệ
+  - tạo SQLite database và connection string
+  - viết API và test
+  - chạy Playwright, SonarQube hoặc Stitch
+  - đồng bộ Issue, comment, Project status, PR và release
+
+workflow:
+  - discover-srs-and-repository
+  - validate-requirements-and-traceability
+  - ask-and-record-stack-decision
+  - design-fe-be-data-api-security
+  - scaffold-or-extend-codebase
+  - implement-vertical-slices
+  - generate-sqlite-schema-migrations-seed
+  - run-white-box-tests
+  - run-black-box-api-and-playwright-tests
+  - run-stitch-sonarqube-quality-review
+  - sync-github-project-issue-comments
+  - pull-request-review-and-merge
+  - release-and-operate
+  - close-with-evidence
+
+inputs:
+  required_one_of:
+    - srs_path
+    - github_project_or_issue
+    - approved_blueprint
+    - user_feature_request
+  optional:
+    - existing_repository
+    - stack_decision
+    - deployment_target
+    - mcp_configuration
+    - github_project_configuration
+
+stack_policy:
+  if_not_decided: ask_user_and_stop_before_scaffold
+  preserve_existing_stack: true
+  record_as: Decision
+
+repository_mapping:
+  owner: Pen1112003
+  default: Sports_Center_Management_System-UAT-BE
+  be: Sports_Center_Management_System-UAT-BE
+  fe: Sports_Center_Management_System-UAT-FE
+  full_stack_policy: record_primary_related_repositories_and_dependencies
+  push_policy:
+    backend_changes_only_to: Sports_Center_Management_System-UAT-BE
+    frontend_changes_only_to: Sports_Center_Management_System-UAT-FE
+    verify_remote_before_push: true
+    block_mismatch: true
+
+coding_standards:
+  follow_existing_conventions: true
+  required_checks:
+    - formatter
+    - linter
+    - typecheck
+    - unit-and-integration-tests
+    - security-and-quality-review
+  forbidden_without_justification:
+    - duplicate_logic
+    - dead_code
+    - magic_values
+    - swallowed_errors
+    - hardcoded_secrets
+    - unexplained_type_escape
+  comments:
+    policy: explain_why_not_what
+    required_for:
+      - business_rules
+      - security_decisions
+      - concurrency_or_transaction_order
+      - non_obvious_sql_or_migrations
+      - library_workarounds
+    not_required_for:
+      - obvious_code
+      - restating_function_names
+
+artifacts:
+  - requirement-traceability.md
+  - stack-decision.md
+  - solution-design.md
+  - database/schema.sql
+  - database/migrations/
+  - database/seed.sql
+  - .env.example
+  - API contract or OpenAPI document
+  - unit-and-integration-test-report
+  - black-box-test-report
+  - Playwright screenshot/trace/report
+  - SonarQube quality report
+  - Stitch design/source sync evidence
+  - GitHub Issue/Project/PR/release evidence
+
+quality_gates:
+  - Context Ready
+  - Stack Ready
+  - Solution Ready
+  - Build Ready
+  - White-box Passed
+  - Black-box Passed
+  - Quality Passed
+  - Delivery Complete
+
+policies:
+  database: SQLite first for local/development, document production migration limits
+  testing_order: white_box_then_black_box
+  secrets: never_print_or_commit
+  github: never_claim_remote_mutation_without_evidence
+  mcp: record_unavailable_or_failed_server_as_blocker_and_use_fallback

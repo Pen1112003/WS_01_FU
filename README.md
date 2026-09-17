@@ -1,6 +1,41 @@
-# BA Blueprint Agent
+# BA Blueprint Agent and Development Agent
 
 BA Blueprint Agent hỗ trợ Business Analyst chuyển hóa nhu cầu nghiệp vụ thành Software Development Blueprint có thể xác nhận, phát triển, kiểm thử và theo dõi delivery trên GitHub Project.
+
+Repository này có thêm **Development Agent** để khép kín vòng đời từ SRS/Project item đến codebase, test, release và vận hành. Người dùng có thể chat với agent; agent chỉ hỏi quyết định bắt buộc, đặc biệt là stack khi chưa được chọn.
+
+## Luồng chat đầu-cuối
+
+```text
+Đọc SRS/Project
+    -> chốt requirement và traceability
+    -> hỏi/chốt FE, BE, language, ORM, API, test, runtime
+    -> thiết kế solution và SQLite
+    -> scaffold/extend FE + BE
+    -> schema/migration/seed/connection string
+    -> API + UI
+    -> white-box test
+    -> black-box API + Playwright
+    -> Stitch + SonarQube quality review
+    -> Issue/Project/comment/PR/release
+    -> rollback, vận hành và Done có evidence
+```
+
+### Development Agent files
+
+| File | Nhiệm vụ |
+|---|---|
+| `.github/agents/development-agent.agent.md` | Custom agent dùng trực tiếp trong VS Code Chat. |
+| `Development-Agent/agent.yaml` | Manifest, state machine, artefact và quality gate. |
+| `Development-Agent/instructions.md` | Runbook chi tiết cho stack decision, build, test, MCP và GitHub delivery. |
+
+### Quy tắc stack
+
+Nếu SRS hoặc repository chưa có quyết định công nghệ, agent phải dừng trước scaffold và hỏi FE, BE, ngôn ngữ, ORM, API style, test runner, package manager, runtime/deploy. Agent chỉ triển khai sau khi người dùng xác nhận; nếu người dùng giao quyền chọn, quyết định phải được ghi thành `Decision` cùng trade-off.
+
+### Quy tắc kiểm thử và MCP
+
+White-box chạy trước gồm unit/component/service/integration, lint, typecheck và coverage. Sau đó black-box gồm API contract test và Playwright UI journey với screenshot/trace/report. Stitch dùng cho phác thảo hoặc đồng bộ FE; SonarQube dùng cho quality/security gate. MCP thiếu quyền hoặc không khả dụng phải được ghi là blocker/fallback, không tạo evidence giả.
 
 ## 1. Mục tiêu và phạm vi
 
@@ -153,7 +188,9 @@ cp .env.example .env
 ```env
 GITHUB_PROJECT_URL=https://github.com/OWNER/REPOSITORY/projects/NUMBER
 GITHUB_OWNER=OWNER
-GITHUB_REPOSITORY=REPOSITORY
+GITHUB_DEFAULT_REPOSITORY=Sports_Center_Management_System-UAT-BE
+GITHUB_BE_REPOSITORY=Sports_Center_Management_System-UAT-BE
+GITHUB_FE_REPOSITORY=Sports_Center_Management_System-UAT-FE
 GITHUB_PROJECT_NUMBER=NUMBER
 GITHUB_TOKEN=REPLACE_WITH_LOCAL_TOKEN
 GITHUB_PROJECT_DRY_RUN=true
@@ -161,6 +198,15 @@ GITHUB_DEFAULT_BRANCH=main
 ```
 
 Giữ `GITHUB_PROJECT_DRY_RUN=true` trong lần đầu để xem trước thay đổi. Không commit `.env` hoặc token. Chỉ commit `.env.example`.
+
+### Repository delivery mapping
+
+| Loại công việc | Repository |
+|---|---|
+| BE mặc định | [Sports_Center_Management_System-UAT-BE](https://github.com/Pen1112003/Sports_Center_Management_System-UAT-BE) |
+| FE | [Sports_Center_Management_System-UAT-FE](https://github.com/Pen1112003/Sports_Center_Management_System-UAT-FE) |
+
+Issue backend dùng BE repository mặc định; issue frontend dùng FE repository. Issue full-stack phải ghi repository chính và repository liên quan để giữ traceability.
 
 ## 8. Trạng thái đầu ra
 

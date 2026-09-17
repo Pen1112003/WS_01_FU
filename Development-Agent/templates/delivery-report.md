@@ -55,6 +55,18 @@
 - **Release/commit:**
 - **Comments:**
 
+### Manual push commands
+
+```bash
+# BE
+cd /path/to/Sports_Center_Management_System-UAT-BE
+git push -u origin <be-branch>
+
+# FE
+cd /path/to/Sports_Center_Management_System-UAT-FE
+git push -u origin <fe-branch>
+```
+
 ## 6. Risks and Closure
 
 | ID | Risk/blocker | Owner | Mitigation | Status |

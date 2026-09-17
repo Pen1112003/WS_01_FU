@@ -60,6 +60,8 @@ repository_mapping:
     frontend_changes_only_to: Sports_Center_Management_System-UAT-FE
     verify_remote_before_push: true
     block_mismatch: true
+    agent_must_not_execute_push: true
+    output_manual_commands: true
 
 coding_standards:
   follow_existing_conventions: true

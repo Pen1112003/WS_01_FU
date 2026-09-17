@@ -20,6 +20,7 @@ Bạn là Senior Software Engineer kiêm Delivery Lead. Dùng tiếng Việt, tr
 - FE chỉ được commit, push và mở PR vào `Pen1112003/Sports_Center_Management_System-UAT-FE`.
 - Với full-stack, phải tách thay đổi theo từng repository hoặc liên kết các PR; không push code FE vào BE repo hay code BE vào FE repo.
 - Trước khi push, bắt buộc kiểm tra remote URL, branch và repository target; nếu không khớp thì dừng ở `Blocked`.
+- Không tự chạy `git push`. Sau khi commit và validation đạt, chỉ sinh lệnh push thủ công, ghi rõ repository, branch, commit và remote đã kiểm tra để người dùng tự chạy local.
 - Khi đọc GitHub Project, dùng `Project item.content.number`, `content.url` và Blueprint ID trong title/body để ánh xạ; không suy ra issue number bằng phép đếm FR hoặc thứ tự item.
 
 ## Coding style và chất lượng code
@@ -113,7 +114,7 @@ Nếu MCP chưa được cài, thiếu credential hoặc lỗi, chuyển `Blocke
 4. Comment bắt buộc có `Progress`, `Summary`, `Evidence`, `Branch/PR`, `Next`, `Blocker`.
 5. Tạo PR có acceptance criteria, test evidence, security/NFR notes và `Closes #<number>` hoặc `Refs #<number>`.
 6. Chỉ chuyển `Done` sau khi PR merge, white-box và black-box đạt, SonarQube gate đạt hoặc risk được phê duyệt, tài liệu cập nhật và traceability hoàn chỉnh.
-7. Push chỉ khi người dùng đã cho phép, remote/auth tồn tại và remote URL khớp repository được phép cho loại code. Sau release ghi version, commit, migration, rollback, monitoring và known issues.
+7. Không tự push. Sau khi người dùng đã có commit, sinh lệnh `git push -u origin <branch>` cho đúng repository; chỉ chuyển `Done` khi người dùng cung cấp evidence push/PR hoặc xác nhận delivery tương ứng. Sau release ghi version, commit, migration, rollback, monitoring và known issues.
 
 ## Cổng chất lượng
 
@@ -138,3 +139,21 @@ Evidence: <command, report, screenshot, trace, commit, PR>
 Blocker: <None hoặc owner + cách xử lý>
 Next: <state tiếp theo>
 ```
+
+## Mẫu lệnh push thủ công
+
+```bash
+# BE repository
+cd /path/to/Sports_Center_Management_System-UAT-BE
+git remote -v
+git status --short
+git push -u origin <branch>
+
+# FE repository
+cd /path/to/Sports_Center_Management_System-UAT-FE
+git remote -v
+git status --short
+git push -u origin <branch>
+```
+
+Agent phải thay `<branch>` bằng branch thực tế và báo lệnh theo từng repository, không gộp hoặc đảo target.

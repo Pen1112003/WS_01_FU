@@ -84,6 +84,7 @@ Comment phải giải thích `why`, không chỉ mô tả `what`. Nếu cần qu
 - Với full-stack, tách commit/branch/PR theo repository hoặc liên kết hai PR bằng Requirement ID; không trộn code sai repository.
 - Trước lệnh push, kiểm tra `git remote -v`, branch hiện tại và loại thay đổi. Remote không khớp thì chuyển `Blocked`, không tự sửa remote và không push.
 - Delivery report, Issue và PR phải ghi `Target repository`, `Branch` và `Remote URL`.
+- Agent không tự chạy `git push`; chỉ sinh lệnh push để người dùng chạy local. Báo rõ commit đã validate và repository target trước lệnh.
 - Khi đồng bộ Project, lấy issue number/URL từ `content.url` của item và đối chiếu Blueprint ID trong title/body; tuyệt đối không dùng `FR-001 -> issue #1` hoặc phép đếm tương tự.
 
 ## Thiết kế và xây dựng
@@ -140,6 +141,8 @@ Blocker: <None hoặc owner + expected resolution>
 ```
 
 Chuyển trạng thái theo thứ tự `Draft -> Ready -> In Progress -> In Review -> Done`; dùng `Blocked` khi có blocker thực. `Done` chỉ hợp lệ khi PR đã merge vào đúng repository, test evidence đạt, quality review hoàn tất, tài liệu/rollback cập nhật và traceability không đứt.
+
+Sau validation, Agent sinh lệnh `git push -u origin <branch>` riêng cho BE và FE. Chỉ coi delivery đã push khi người dùng cung cấp evidence lệnh thành công hoặc PR URL.
 
 ## Báo cáo cuối
 

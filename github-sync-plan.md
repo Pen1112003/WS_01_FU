@@ -10,9 +10,9 @@
 
 ---
 
-## 1. Kết quả Đồng bộ Chi tiết (18 Items)
+## 1. Kết quả Đồng bộ Chi tiết (19 Items)
 
-Toàn bộ 18 yêu cầu chức năng đã được tạo thành Issue chính thức và gắn trực tiếp vào **GitHub Project #19 (Sports Center Management System)** với đầy đủ các thuộc tính chuẩn hóa:
+Toàn bộ 19 yêu cầu chức năng (FR-001 đến FR-019) đã được tạo thành Issue chính thức và gắn trực tiếp vào **GitHub Project #19 (Sports Center Management System)** với đầy đủ các thuộc tính chuẩn hóa:
 
 | Blueprint ID | GitHub Issue | Project Item ID | Priority | Status | Size | Target Date | Branch chuẩn |
 |---|---|---|---|---|---|---|---|
@@ -34,6 +34,7 @@ Toàn bộ 18 yêu cầu chức năng đã được tạo thành Issue chính th
 | `FR-016` | [#18: Tích hợp Chatbot AI Assistant giải đáp thông tin dịch vụ](https://github.com/Pen1112003/FU_01_DEMO_SRS_2026/issues/18) | `PVTI_lAHOByW5DM4Bjbiazg64hJ4` | P2 | Ready | M | 2026-11-14 | `feat/18-ai-chatbot-assistant` |
 | `FR-017` | [#19: Cơ chế gửi thông báo đẩy nhắc lịch học và hạn gói tập](https://github.com/Pen1112003/FU_01_DEMO_SRS_2026/issues/19) | `PVTI_lAHOByW5DM4Bjbiazg64hQU` | P1 | Ready | S | 2026-11-16 | `feat/19-push-notification` |
 | `FR-018` | [#20: Hệ thống ghi log kiểm toán bất biến (Audit Trail Logging)](https://github.com/Pen1112003/FU_01_DEMO_SRS_2026/issues/20) | `PVTI_lAHOByW5DM4Bjbiazg64hYs` | P0 | Ready | M | 2026-11-20 | `feat/20-audit-trail` |
+| `FR-019` | [#23: Hệ thống hóa bộ Prompt và quy chuẩn thiết kế giao diện UI/UX bằng Stitch MCP](https://github.com/Pen1112003/Sports_Center_Management_System-UAT-BE/issues/23) | `PVTI_lAHOByW5DM4Bjbiazg7l9tQ` | P1 | Ready | M | 2026-11-25 | `feat/23-stitch-ui-prompts` |
 
 ---
 

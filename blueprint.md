@@ -175,6 +175,7 @@ Mẫu chuẩn: `Hệ thống phải [hành vi] cho [actor] khi [điều kiện],
 | FR-016 | AI Assistant Chat | Hệ thống phải cung cấp giao diện chat AI để trả lời tự động các câu hỏi của hội viên về thời khóa biểu, chính sách gói tập, kỹ thuật bài tập cơ bản và quy định phòng tập khi hội viên gửi tin nhắn, để giải đáp 24/7. | P2 Medium | Flow 6 | Given câu hỏi về nội dung trung tâm, When Member gửi tin nhắn chat, Then AI phân tích context dữ liệu trung tâm và trả lời chính xác, lịch sự trong < 3 giây. |
 | FR-017 | Push Notification | Hệ thống phải tự động gửi thông báo qua Mobile App / Web / Email cho hội viên trước buổi học 60 phút hoặc trước ngày hết hạn gói tập 7 ngày khi thỏa mãn điều kiện thời gian, để hạn chế việc quên lịch và kích thích gia hạn. | P1 High | Flow 6 | Given buổi học diễn ra lúc 18:00, When đồng hồ hệ thống điểm 17:00 cùng ngày, Then hệ thống kích hoạt gửi thông báo nhắc lịch cho các thành viên có booking. |
 | FR-018 | Audit Trail Logging | Hệ thống phải tự động lưu vết mọi thao tác quan trọng (thay đổi phân quyền, xóa dữ liệu, điều chỉnh giá, hủy hóa đơn, ghi đè lịch) kèm User ID, IP và Timestamp khi sự kiện xảy ra, để phục vụ thanh tra và kiểm soát rủi ro. | P0 Critical | SRS Sec 2 (Manager) | Given thao tác cập nhật bảng giá hoặc hủy booking, When giao dịch DB thực thi, Then 1 bản ghi Audit Log bất biến được chèn vào bảng log hệ thống. |
+| FR-019 | UI/UX & Stitch Prototyping | Hệ thống phải cung cấp bộ prompt chuẩn hóa và quy chuẩn thiết kế UI/UX đa nền tảng bằng Stitch MCP (Mobile App cho Member/Coach, Desktop Portal cho Manager/Receptionist) để tự động hóa việc sinh màn hình và nguyên mẫu tương tác từ yêu cầu nghiệp vụ. | P1 High | SRS Toàn diện (Sec 2, 3, 4) | Given yêu cầu nghiệp vụ của bất kỳ FR nào từ FR-001 đến FR-018, When gọi Stitch MCP với prompt chuẩn tương ứng, Then hệ thống sinh màn hình UI hoàn chỉnh đạt chuẩn Design System, hỗ trợ xem trước và bàn giao. |
 
 ---
 
@@ -582,3 +583,33 @@ Tất cả các API được bảo vệ bằng cơ chế xác thực JWT Bearer 
 | Product Owner / Sponsor | User (Stakeholder) | Approved | 2026-09-14 |
 | Technical Architect | Tech Lead | Ready for Implementation | 2026-09-14 |
 | Quality Assurance Lead | QA Lead | Ready for Test Planning | 2026-09-14 |
+
+---
+
+## 16. Phụ lục: Bộ Prompt Thiết Kế Giao Diện UI/UX với Stitch MCP Theo Từng Chức Năng (FR-001 -> FR-019)
+
+Toàn bộ 19 chức năng trong hệ thống đã được chuẩn hóa câu lệnh Prompt thiết kế giao diện UI/UX sử dụng công cụ **Stitch MCP** (`generate_screen_from_text`, `generate_variants`, `create_design_system`). 
+
+- **Tài liệu chi tiết toàn bộ 19 Prompts:** [docs/stitch-ui-prompts-by-feature.md](file:///Users/penpen1112003/Demo/WS_01_FU/docs/stitch-ui-prompts-by-feature.md)
+- **Prompt Agent Runner:** [.github/prompts/stitch-ui-design.prompt.md](file:///Users/penpen1112003/Demo/WS_01_FU/.github/prompts/stitch-ui-design.prompt.md)
+- **Tóm tắt ánh xạ màn hình:**
+  - `FR-001`: Màn hình Đăng nhập & Xác thực 4 vai trò (Desktop Split-screen & Mobile).
+  - `FR-002`: Màn hình Quản lý Danh sách Thành viên & Slide-over Form (Desktop).
+  - `FR-003`: Màn hình Cấu hình Danh mục Gói tập Card Grid (Desktop).
+  - `FR-004`: Màn hình Thẻ Hội Viên Điện Tử Holographic QR & Tiến trình gói tập (Mobile).
+  - `FR-005`: Màn hình Lập Thời Khóa Biểu Kéo Thả Drag-and-Drop (Desktop).
+  - `FR-006`: Modal Cảnh Báo Xung Đột Lịch Vận Hành So Sánh 2 Cột (Desktop).
+  - `FR-007`: Màn hình Khám Phá & Đặt Chỗ Lớp Học Kèm Horizontal Datepicker (Mobile).
+  - `FR-008`: Màn hình Lịch Tập Của Tôi & Hủy Lớp Có Điều Kiện (Mobile).
+  - `FR-009`: Huy Hiệu & Cảnh Báo Lớp Sắp Đầy >= 90% (Mobile & Desktop).
+  - `FR-010`: Màn hình POS Thu Tiền & Xuất Hóa Đơn Điện Tử (Desktop).
+  - `FR-011`: Executive Dashboard Báo Cáo Doanh Thu & Heatmap Khung Giờ (Desktop).
+  - `FR-012`: Màn hình Trạm Check-in Tự Động Quét QR Động (Desktop & Tablet).
+  - `FR-013`: Màn hình Soạn Kế Hoạch Bài Tập & Giáo Án Thể Lực (Tablet & Desktop).
+  - `FR-014`: Sổ Tay Thể Lực & Biểu Đồ Tiến Độ Tăng Cơ Giảm Mỡ (Mobile & Tablet).
+  - `FR-015`: Giao Diện AI Gợi Ý Bài Tập Cá Nhân Hóa Theo Thể Trạng (Mobile).
+  - `FR-016`: Giao Diện Chatbot AI Hỗ Trợ Hội Viên 24/7 Rich Cards (Mobile).
+  - `FR-017`: Trung Tâm Thông Báo Đẩy Nhắc Lịch Học & Hạn Gói (Mobile & Desktop).
+  - `FR-018`: Màn Hình Tra Cứu Nhật Ký Kiểm Toán Audit Log Bất Biến (Desktop).
+  - `FR-019`: Portal Quản Trị Thư Viện Thiết Kế & Registry Prompt Stitch MCP (Desktop).
+

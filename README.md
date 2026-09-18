@@ -29,6 +29,15 @@ Repository này có thêm **Development Agent** để khép kín vòng đời t�
 | `Development-Agent/agent.yaml` | Manifest, state machine, artefact và quality gate. |
 | `Development-Agent/instructions.md` | Runbook chi tiết cho stack decision, build, test, MCP và GitHub delivery. |
 
+### Prompts & Workflows (`.github/prompts/`)
+
+| Prompt File | Mục đích sử dụng |
+|---|---|
+| `.github/prompts/ba-blueprint-agent.prompt.md` | Chạy toàn bộ quy trình BA: Khám phá, phân tích SRS, lập Blueprint và chuẩn bị sync GitHub Project. |
+| `.github/prompts/blueprint-workflow.prompt.md` | Sinh và review Software Development Blueprint cho từng chức năng. |
+| `.github/prompts/project-sync.prompt.md` | Chuẩn bị và kiểm thử đồng bộ Feature/Issue lên GitHub Project. |
+| `.github/prompts/stitch-ui-design.prompt.md` | Hướng dẫn và sinh giao diện người dùng (UI Screens, Prototypes, Design System) bằng **Stitch MCP**. |
+
 ### Quy tắc stack
 
 Nếu SRS hoặc repository chưa có quyết định công nghệ, agent phải dừng trước scaffold và hỏi FE, BE, ngôn ngữ, ORM, API style, test runner, package manager, runtime/deploy. Agent chỉ triển khai sau khi người dùng xác nhận; nếu người dùng giao quyền chọn, quyết định phải được ghi thành `Decision` cùng trade-off.

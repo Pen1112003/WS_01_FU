@@ -44,6 +44,7 @@ Use these files as the main references:
 - `BA-Blueprint-Agent/instructions.md`
 - `BA-Blueprint-Agent/templates/blueprint-template.md`
 - `BA-Blueprint-Agent/governance/*.md`
+- `.github/prompts/stitch-ui-design.prompt.md`
 - `.github/agents/development-agent.agent.md`
 - `Development-Agent/agent.yaml`
 - `Development-Agent/instructions.md`
@@ -53,4 +54,5 @@ Use natural language requests like:
 - “Hãy làm workflow BA Blueprint Agent cho tính năng đăng ký lớp học”
 - “Tạo blueprint cho feature này theo template”
 - “Chốt requirement và use case cho chức năng X”
+- “Tạo giao diện màn hình bằng Stitch MCP theo SRS”
 - “Chuẩn bị issue và sync lên GitHub project”

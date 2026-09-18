@@ -1,0 +1,51 @@
+services:
+  sonarqube:
+    image: sonarqube:community
+    ports:
+      - "9000:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --silent http://localhost:9000/api/system/status | grep -q 'status.*UP'"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  sonar-fe:
+    image: sonarsource/sonar-scanner-cli:latest
+    depends_on:
+      sonarqube:
+        condition: service_healthy
+    environment:
+      SONAR_HOST_URL: http://host.docker.internal:9000
+      SONAR_TOKEN: ${SONAR_TOKEN:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /workspaces/Sports_Center_Management_System-UAT-FE:/usr/src/fe
+    working_dir: /usr/src/fe
+    command: ["-Dsonar.projectBaseDir=/usr/src/fe"]
+
+  sonar-be:
+    image: sonarsource/sonar-scanner-cli:latest
+    depends_on:
+      sonarqube:
+        condition: service_healthy
+    environment:
+      SONAR_HOST_URL: http://host.docker.internal:9000
+      SONAR_TOKEN: ${SONAR_TOKEN:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /workspaces/Sports_Center_Management_System-UAT-BE:/usr/src/be
+    working_dir: /usr/src/be
+    command: ["-Dsonar.projectBaseDir=/usr/src/be"]
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:

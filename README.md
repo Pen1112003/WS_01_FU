@@ -37,6 +37,19 @@ Nếu SRS hoặc repository chưa có quyết định công nghệ, agent phải
 
 White-box chạy trước gồm unit/component/service/integration, lint, typecheck và coverage. Sau đó black-box gồm API contract test và Playwright UI journey với screenshot/trace/report. Stitch dùng cho phác thảo hoặc đồng bộ FE; SonarQube dùng cho quality/security gate. MCP thiếu quyền hoặc không khả dụng phải được ghi là blocker/fallback, không tạo evidence giả.
 
+### Chạy SonarQube local cho FE/BE
+
+Đã có cấu hình tại `Sports_Center_Management_System-UAT-FE/sonar-project.properties`, `Sports_Center_Management_System-UAT-BE/sonar-project.properties` và stack tại `docker-compose.sonar.yml`.
+
+```bash
+docker compose -f docker-compose.sonar.yml up -d sonarqube
+export SONAR_TOKEN='<token-tạo-trong-SonarQube>'
+docker compose -f docker-compose.sonar.yml run --rm sonar-fe
+docker compose -f docker-compose.sonar.yml run --rm sonar-be
+```
+
+Mở `http://localhost:9000` để đăng nhập và tạo token ở **My Account > Security**. Không commit token vào source hoặc file Compose.
+
 ## 1. Mục tiêu và phạm vi
 
 Agent phục vụ toàn bộ vòng đời phân tích và delivery:
